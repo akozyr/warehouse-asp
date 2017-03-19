@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using warehouse_asp.Models;
@@ -13,37 +14,22 @@ namespace warehouse_asp.Controllers
     public class CatalogController : Controller
     {
         private CatalogDBContext db = new CatalogDBContext();
-
+        
         // GET: /Catalog/
-        public ActionResult Index()
+        [Authorize]
+        public async Task<ActionResult> Index()
         {
-            return View(db.Catalogs.ToList());
-        }
-
-        // GET: /Catalog/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Catalog catalog = db.Catalogs.Find(id);
-            if (catalog == null)
-            {
-                return HttpNotFound();
-            }
-            return View(catalog);
+            return View(await db.Catalogs.ToListAsync());
         }
 
         // GET: /Catalog/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: /Catalog/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,name")] Catalog catalog)
@@ -59,6 +45,7 @@ namespace warehouse_asp.Controllers
         }
 
         // GET: /Catalog/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,8 +61,6 @@ namespace warehouse_asp.Controllers
         }
 
         // POST: /Catalog/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,name")] Catalog catalog)
@@ -90,6 +75,7 @@ namespace warehouse_asp.Controllers
         }
 
         // GET: /Catalog/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

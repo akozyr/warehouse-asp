@@ -222,12 +222,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Catalog\Create.cshtml" />
     <Content Include="Views\Catalog\Delete.cshtml" />
-    <Content Include="Views\Catalog\Details.cshtml" />
     <Content Include="Views\Catalog\Edit.cshtml" />
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
-    <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>

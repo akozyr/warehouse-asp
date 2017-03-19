@@ -15,28 +15,15 @@ namespace warehouse_asp.Controllers
         private ProductDBContext db = new ProductDBContext();
 
         // GET: /Product/
+        [Authorize]
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Catalog);
             return View(products.ToList());
         }
 
-        // GET: /Product/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
         // GET: /Product/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.catalogId = new SelectList(db.Catalogs, "id", "name");
@@ -44,8 +31,6 @@ namespace warehouse_asp.Controllers
         }
 
         // POST: /Product/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,name,price,catalogId")] Product product)
@@ -62,6 +47,7 @@ namespace warehouse_asp.Controllers
         }
 
         // GET: /Product/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,8 +64,6 @@ namespace warehouse_asp.Controllers
         }
 
         // POST: /Product/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,name,price,catalogId")] Product product)
@@ -95,6 +79,7 @@ namespace warehouse_asp.Controllers
         }
 
         // GET: /Product/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
