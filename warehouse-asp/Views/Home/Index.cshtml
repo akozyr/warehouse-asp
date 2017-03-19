@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    ViewBag.IsEditableList = false;
 }
 
 <div class="jumbotron">
@@ -7,17 +8,4 @@
     <p class="lead">This resource shows us creating Warehouse application based on ASP.NET technology.</p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2></h2>
-        <p></p>
-    </div>
-    <div class="col-md-4">
-        <h2></h2>
-        <p></p>
-    </div>
-    <div class="col-md-4">
-        <h2></h2>
-        <p></p>
-    </div>
-</div>
+@Html.Partial("_ProductsList")

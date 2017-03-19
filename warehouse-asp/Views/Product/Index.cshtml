@@ -1,7 +1,6 @@
-﻿@model IEnumerable<warehouse_asp.Models.Product>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
+    ViewBag.IsEditableList = true;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,36 +9,4 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            GROUP NAME
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name).ToString().ToUpper()
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price).ToString().ToUpper()
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalog.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price) $
-        </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-edit" }) |
-            @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-remove" })
-        </td>
-    </tr>
-}
-
-</table>
+@Html.Partial("_ProductsList")
