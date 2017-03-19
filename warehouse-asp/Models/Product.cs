@@ -12,10 +12,12 @@ namespace warehouse_asp.Models
         public int? catalogId { get; set; }
         // navigational property
         public Catalog Catalog { get; set; }
+    }
 
-        public class ProductDBContext : ApplicationDbContext
-        {
-            public DbSet<Product> Products { get; set; }
-        }
+    public class ProductDBContext : ApplicationDbContext
+    {
+        public DbSet<Product> Products { get; set; }
+
+        public System.Data.Entity.DbSet<warehouse_asp.Models.Catalog> Catalogs { get; set; }
     }
 }
